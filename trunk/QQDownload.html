@@ -1,0 +1,178 @@
+苇间水域电子杂志下载页面
+
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<form  method="post" name="form1"  >
+直接下载地址：<input name="address" type="text" class="line_input" value="" size="100" maxlength=500>
+<br>
+<br>
+FTN5K=<input name="FM5K" type="text" class="line_input" value="" size="8" maxlength=8>
+格式：8位字符串，不要带“FTN5K=”，各位吧友直接点击下面的下载，不用理会这个选项，已经填上了。
+<br>
+<br>
+选择下载服务器（可自行在迅雷中修改，例如http://61.dc.ftn.qq.com，修改61为你想要的服务器即可）：
+<br>
+<input type="radio" id="dx1" value="1"  name="node2"  >61号电信服务器
+<br>
+<input type="radio" id="dx2" value="1"  name="node2"   >51号电信服务器
+<br>
+<input type="radio" id="wt1" value="1"  name="node2"   checked >62号网通服务器
+<br>
+<input type="radio" id="jy1" value="1"  name="node2"   >63号教育网服务器
+<br>
+选择下载工具：
+<br>
+<input type="radio" value="0"  id="xunlei" name="downtool"   checked   >使用迅雷下载
+<br>
+<input type="radio" id="xuanfeng" value="1"  name="downtool"   >使用超级旋风下载（不推荐，需要删除QQ.COM的IE COOKIE）
+<br>
+<input type="radio" id="flashget" value="1"  name="downtool"   >使用快车下载（仅支持快车2.0 -2.4）
+<br>
+<input type="button" name="file" value=" 下载文件 " class="inputbtn" onClick="get()">
+</form>
+
+<script language="javascript">
+var reNumbers2 =/\?fd=(.+)\&(\w+)/;
+reNumbers2.test(window.location.href); 
+document.getElementById("address").value= RegExp.$1 ;
+document.getElementById("FM5K").value= RegExp.$2 ;
+//alert(window.location.href);
+function get(Url, strCookie1,strCookie2)
+{
+
+//强迫下载
+//把“直接下载地址”换成QQ的直接下载链接，例如：http://exs.mail.foxmail.com/cgi-bin/downloadfilepart?XXXXXXXXXXXXXXXXX
+//var Url = new Array("http://2","http://feeeeeeeerererer",453,999);
+//Url[0] = "http://exs.mail.qq.com/1.exe";
+//Url[1]= "http://exs.mail.qq.com/cgi-bin/downloadfilepart/svrid15/Kyle.XY.Season2.EP20_S-Files.rmvb?svrid=15&fid=5e3dbaa3c305bfcc8147e496b57198e1d47b1219e0a003e4&&txf_fid=15546758a1a6d5fb2e8057b8030f19b8a65f1c52&&txf_sid=1c56fd2b370fda6815ae80acccdeef1a62a41db8";
+var theform = document.formAnonymousPickup;
+//把“提取码”换成中转站提取码，例如：cca97f68
+//var strCookie = "qqmail_username="+strCookie1+"; UM5K="+strCookie2;
+var Location = "http://qq.com/cgi-bin/help?subtype=1&&id=35&&no=243" ;
+var Info = "http://m348.mail.qq.com/cgi-bin/frame_html?sid=" ;
+var CID = 0 ;
+strCookie = "qqmail_username="+strCookie1+"; UM5K="+strCookie2;
+var theform = document.form1;
+var Url = theform.address.value ;
+
+var reg=/(http\:\/\/)(\d{2})(\.dc\.ftn\.qq\.com.+)/;
+var reg2=/http\:\/\/\d{2}\.oc\.ftn\.qq\.com.+/;
+if(reg2.test(Url)==false)
+{
+ if (document.all.dx1.checked == true)
+{
+var Url=Url.replace(reg,"$161$3");
+}
+else if (document.all.dx2.checked == true)
+{
+var Url=Url.replace(reg,"$151$3");
+}
+else if (document.all.wt1.checked == true)
+{
+var Url=Url.replace(reg,"$162$3");
+}
+else
+{
+var Url=Url.replace(reg,"$163$3");
+}
+
+}
+
+
+
+
+var strCookie1 = theform.FM5K.value ;
+var strCookie = "FTN5K="+strCookie1;
+var newname = theform.downtool.value;
+
+if (document.all.xunlei.checked == true)
+{
+
+
+try
+{
+//var com = new ActiveXObject("Zyzzyva.Control.1");
+//	       com.Download(Url, "", "", strCookie);
+//var QQRightClick = new ActiveXObject("QQIEHelper.QQRightClick.2");
+var ThunderAgent = new ActiveXObject("ThunderAgent.Agent");
+}catch(e)
+{
+         if(document.uniqueID)
+           	{
+       if(confirm("你还没安装讯雷,请先安装后再刷新此页面，按确定进入最新版讯雷的下载页面"))
+        {
+location.href="http://dl.xunlei.com/index.htm?tag=1";
+        }
+
+           	}
+else
+		{
+			alert("您当前使用的为非IE浏览器,请先切换到IE浏览器,否则无法下载!");
+		}
+}
+	
+
+
+if(Url!="")
+
+{
+// ThunderAgent.AddTask5(Url, "", "", Info, Location,-1,0,-1,strCookie,"","", 1, "", -1);
+ThunderAgent.AddTask4(Url, "", "", "", Info, -1, 0, -1, strCookie, "", "")
+ThunderAgent.CommitTasks2(1);
+
+}
+}
+
+else if (document.all.xuanfeng.checked == true)
+{
+try
+{
+//var com = new ActiveXObject("Zyzzyva.Control.1");
+//	       com.Download(Url, "", "", strCookie);
+var QQRightClick = new ActiveXObject("QQIEHelper.QQRightClick.2");
+}catch(e)
+{
+         if(document.uniqueID)
+           	{
+       if(confirm("你还没安装超级旋风,请先安装后再刷新此页面，按确定进入最新版超级旋风的下载页面"))
+        {
+location.href="http://im.qq.com/cyclone/download.shtml";
+        }
+
+           	}
+else
+		{
+			alert("您当前使用的为非IE浏览器,请先切换到IE浏览器,否则无法下载!");
+		}
+}
+	
+
+
+if(Url!="")
+
+{
+QQRightClick.sendUrl2(Url, Location, Info, strCookie, 0, CID);
+}
+}
+else 
+{
+	if (Url != "")
+	{
+		var JetCarNetscape = new ActiveXObject("BHO.IFlashGetNetscapeEx");
+		if(JetCarNetscape != null)
+		{
+		    JetCarNetscape.AddUrlEx(Url, Info, Location, "FlashGet",strCookie, 0);
+		}
+	}
+}
+}
+
+
+
+</script>
+</html>
+注意：添加自动填充功能
+<br><br><br><br>
+华北水利水电学院吧，不能下载的话，请联系QQ：44210987,或者在贴吧内留言。
+<br>
